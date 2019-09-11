@@ -1,0 +1,27 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+.header{
+  overflow: hidden;
+  background-color: green;
+  padding: 20px 10px;
+  text-align: center;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  grid-template-areas:
+    "header"
+    "navbar";
+  height: 100px;
+  padding: 0;
+
+}
