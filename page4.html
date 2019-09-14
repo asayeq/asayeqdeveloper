@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="style.css"/>
+
+<title>Advanced Webdevelopment</title>
+<script type="text/javascript"> </script>
+
+<meta name="description" content="Page 1">
+
+<meta name="author" content="Aimal Sayeq">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+
+
+$(function(){
+
+      $.getJSON("https://www.googleapis.com/books/v1/volumes?q=modern%20web",function(data){
+            var $bookinfo = $("#bookinfo");
+			var content = "";
+			var data1 = data["items"];
+      content += "kind: " + data["kind"] + "<br>";
+			content += "<br>";
+			$.each(data1,function(infoIndex,info){
+        content += "id: " + info["id"] + "<br>";
+        content += "etag: " + info["etag"] + "<br>";
+        content += "<a href=\"" + info["selfLink"] + "\">self link</a><br>";
+
+        var volumeInfo = info["volumeInfo"];
+        content += "title: " + volumeInfo["title"] + "<br>";
+        content += "subtitle: " + volumeInfo["subtitle"] + "<br>";
+        content += "authors: " + volumeInfo["authors"] + "<br>";
+        content += "Publisher: " + volumeInfo["publisher"] + "<br>";
+        content += "PublishedDate: " + volumeInfo["publishedDate"] + "<br>";
+        content += "Description: " + volumeInfo["description"] + "<br>";
+        var indusIden = volumeInfo["industryIdentifiers"];
+        $.each(indusIden, function(infoIndex1, info2) {
+
+          content += "type: " + info2["type"] + "<br>";
+          content += "identifier: " + info2["identifier"] + "<br>";
+
+        })
+        var readingModes = volumeInfo["readingModes"];
+        content += "text: " + readingModes["text"] + "<br>";
+        content += "image: " + readingModes["image"] + "<br>";
+
+        content += "pageCount: " + volumeInfo["pageCount"] + "<br>";
+        content += "printType: " + volumeInfo["printType"] + "<br>";
+        content += "categories: " + volumeInfo["categories"] + "<br>";
+        content += "averageRating: " + volumeInfo["averageRating"] + "<br>";
+        content += "ratingsCount: " + volumeInfo["ratingsCount"] + "<br>";
+        content += "maturityRating: " + volumeInfo["maturityRating"] + "<br>";
+        content += "allowAnonLogging: " + volumeInfo["allowAnonLogging"] + "<br>";
+        content += "contentVersion: " + volumeInfo["contentVersion"] + "<br>";
+        content += "panelizationSummary: " + volumeInfo["panelizationSummary"] + "<br>";
+        var panelizationSummary = volumeInfo["panelizationSummary"];
+        content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
+        content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
+        var imageLinks = volumeInfo["imageLinks"];
+
+        content += "<img src=\"" + imageLinks["smallThumbnail"] + "\"><br>";
+        content += "<img src=\"" + imageLinks["thumbnail"] + "\"><br>";
+        content += "language: " + volumeInfo["language"] + "<br>";
+        content += "<a href=\"" + volumeInfo["previewLink"] + "\">preview link</a><br>";
+        content += "<a href=\"" + volumeInfo["infoLink"] + "\">info link</a><br>";
+        content += "<a href=\"" + volumeInfo["canonicalVolumeLink"] + "\">canonical volume link</a><br>";
+
+        var saleInfo = info["saleInfo"];
+        content += "country: " + saleInfo["country"] + "<br>";
+        content += "saleability: " + saleInfo["saleability"] + "<br>";
+        content += "isEbook: " + saleInfo["isEbook"] + "<br>";
+
+        var accessInfo = info["accessInfo"];
+        content += "country: " + accessInfo["country"] + "<br>";
+        content += "viewability: " + accessInfo["viewability"] + "<br>";
+        content += "embeddable: " + accessInfo["embeddable"] + "<br>";
+        content += "publicDomain: " + accessInfo["publicDomain"] + "<br>";
+        content += "textToSpeechPermission: " + accessInfo["textToSpeechPermission"] + "<br>";
+
+        var epub = accessInfo["epub"];
+        content += "isAvailable: " + epub["isAvailable"] + "<br>";
+        var pdf = accessInfo["pdf"];
+        content += "isAvailable: " + pdf["isAvailable"] + "<br>";
+        content += "webReaderLink: " + accessInfo["webReaderLink"] + "<br>";
+        content += "accessViewStatus: " + accessInfo["accessViewStatus"] + "<br>";
+        content += "quoteSharingAllowed: " + accessInfo["quoteSharingAllowed"] + "<br>";
+        var searchInfo = info["searchInfo"];
+        content += "textSnippet: " + searchInfo["textSnippet"] + "<br><br><br>";
+
+
+
+
+
+
+
+
+
+
+				})
+
+			$bookinfo.html(content);
+			})
+
+
+	})
+</script>
+</head>
+<body>
+
+<br />
+<div id="divframe">
+  <div id="bookinfo">
+  </div>
+</div>
+
+
+
+
+</body>
+</html>
