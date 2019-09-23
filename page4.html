@@ -24,10 +24,15 @@ $(function(){
             var $bookinfo = $("#bookinfo");
 			var content = "";
 			var data1 = data["items"];
+
+
+    
+
       content += "kind: " + data["kind"] + "<br>";
 			content += "<br>";
 			$.each(data1,function(infoIndex,info){
         content += "id: " + info["id"] + "<br>";
+
         content += "etag: " + info["etag"] + "<br>";
         content += "<a href=\"" + info["selfLink"] + "\">self link</a><br>";
 
