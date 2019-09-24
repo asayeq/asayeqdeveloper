@@ -46,8 +46,6 @@ $(function(){
         content += "text: " + readingModes["text"] + "<br>";
         content += "image: " + readingModes["image"] + "<br>";
 
-        content += "<div><img src=\"" + imageLinks["smallThumbnail"] + "\"><br></div>";
-
         content += "pageCount: " + volumeInfo["pageCount"] + "<br>";
         content += "printType: " + volumeInfo["printType"] + "<br>";
         content += "categories: " + volumeInfo["categories"] + "<br>";
@@ -62,7 +60,7 @@ $(function(){
         content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
         var imageLinks = volumeInfo["imageLinks"];
 
-        //content += "<img src=\"" + imageLinks["smallThumbnail"] + "\"><br>";
+        content += "<img src=\"" + imageLinks["smallThumbnail"] + "\"><br>";
         content += "<img src=\"" + imageLinks["thumbnail"] + "\"><br>";
         content += "language: " + volumeInfo["language"] + "<br>";
         content += "<a href=\"" + volumeInfo["previewLink"] + "\">preview link</a><br>";
