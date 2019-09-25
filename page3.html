@@ -36,6 +36,8 @@ $(function(){
         content += "PublishedDate: " + volumeInfo["publishedDate"] + "<br>";
         content += "Description: " + volumeInfo["description"] + "<br>";
         var indusIden = volumeInfo["industryIdentifiers"];
+        var imageLinks = volumeInfo["imageLinks"];
+        content += "<img src=\"" + imageLinks["smallThumbnail"] + "\"><br>";
         $.each(indusIden, function(infoIndex1, info2) {
 
           content += "type: " + info2["type"] + "<br>";
@@ -59,9 +61,7 @@ $(function(){
         content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
         content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
 
-        var imageLinks = volumeInfo["imageLinks"];
-        content += "<img src=\"" + imageLinks["smallThumbnail"] + "\"><br>";
-        content += "<img src=\"" + imageLinks["thumbnail"] + "\"><br>";
+
 
         content += "language: " + volumeInfo["language"] + "<br>";
         content += "<a href=\"" + volumeInfo["previewLink"] + "\">preview link</a><br>";
@@ -87,18 +87,6 @@ $(function(){
         content += "webReaderLink: " + accessInfo["webReaderLink"] + "<br>";
         content += "accessViewStatus: " + accessInfo["accessViewStatus"] + "<br>";
         content += "quoteSharingAllowed: " + accessInfo["quoteSharingAllowed"] + "<br>";
-
-
-
-
-
-
-
-
-
-
-
-
 
 			$bookinfo.html(content);
 			})
