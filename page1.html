@@ -15,7 +15,8 @@
 <style type="text/css">
 
 </style>
-<h1>IT eBooks</h1>
+<center><h1>IT eBooks</h1></center>
+<p><a href="Milestone1.html">Milestone 1</a><br/></p>
 <script type="text/javascript">
 
 
@@ -27,9 +28,12 @@ $(function(){
 			var data1 = data["Books"];
 			content += "<br>";
 			$.each(data1,function(infoIndex,info){
+
         content += "<img src=\"" + info["Image"] + "\"><br>";
 				content += "ID: " + info["ID"] + "<br>";
-				content += "Title: " + info["Title"] + "<br>";
+        content += "Title: " + info["Title"] + "<br>";
+
+
 				content += "SubTitle: " + info["SubTitle"] + "<br>";
 				content += "Description: " + info["Description"] + "<br>";
 
