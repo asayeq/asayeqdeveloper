@@ -15,6 +15,7 @@
 <style type="text/css">
 
 </style>
+<p><a href="Milestone1.html">Milestone 1</a><br/></p>
 <script type="text/javascript">
 
 
@@ -34,10 +35,18 @@ $(function(){
         content += "authors: " + volumeInfo["authors"] + "<br>";
         content += "Publisher: " + volumeInfo["publisher"] + "<br>";
         content += "PublishedDate: " + volumeInfo["publishedDate"] + "<br>";
-        content += "Description: " + volumeInfo["description"] + "<br>";
-        var indusIden = volumeInfo["industryIdentifiers"];
+
+
         var imageLinks = volumeInfo["imageLinks"];
         content += "<img src=\"" + imageLinks["smallThumbnail"] + "\"><br>";
+        content += "Description: " + volumeInfo["description"] + "<br>";
+
+
+
+        var indusIden = volumeInfo["industryIdentifiers"];
+
+
+
         $.each(indusIden, function(infoIndex1, info2) {
 
           content += "type: " + info2["type"] + "<br>";
