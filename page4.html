@@ -15,6 +15,7 @@
 <style type="text/css">
 
 </style>
+<p><a href="Milestone1.html">Milestone 1</a><br/></p>
 <script type="text/javascript">
 
 
@@ -67,9 +68,10 @@ $(function(){
         content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
         content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
         var imageLinks = volumeInfo["imageLinks"];
-
         content += "<img src=\"" + imageLinks["smallThumbnail"] + "\"><br>";
-        content += "<img src=\"" + imageLinks["thumbnail"] + "\"><br>";
+
+
+      <!--  content += "<img src=\"" + imageLinks["thumbnail"] + "\"><br>";-->
         content += "language: " + volumeInfo["language"] + "<br>";
         content += "<a href=\"" + volumeInfo["previewLink"] + "\">preview link</a><br>";
         content += "<a href=\"" + volumeInfo["infoLink"] + "\">info link</a><br>";
