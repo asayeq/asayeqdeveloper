@@ -13,6 +13,11 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style type="text/css">
+.book-photo {
+  float: left;
+  width: 20%;
+  margin-left: 15px;
+}
 
 </style>
 <p><a href="Milestone1.html">Milestone 1</a><br/></p>
@@ -29,16 +34,12 @@ $(function(){
 
 
 
-      content += "kind: " + data["kind"] + "<br>";
-			content += "<br>";
 			$.each(data1,function(infoIndex,info){
-        content += "id: " + info["id"] + "<br>";
-
-        content += "etag: " + info["etag"] + "<br>";
-        content += "<a href=\"" + info["selfLink"] + "\">self link</a><br>";
 
         var volumeInfo = info["volumeInfo"];
-        content += <!--"title: "--> + volumeInfo["title"] + "<br>";
+        var imageLinks = volumeInfo["imageLinks"];
+        content += '<img src="' + imageLinks["smallThumbnail"]+'" class="book-photo" />';
+        content += " " + volumeInfo["title"] + "<br>";
         content += "subtitle: " + volumeInfo["subtitle"] + "<br>";
         content += "authors: " + volumeInfo["authors"] + "<br>";
         content += "Publisher: " + volumeInfo["publisher"] + "<br>";
@@ -67,11 +68,10 @@ $(function(){
         var panelizationSummary = volumeInfo["panelizationSummary"];
         content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
         content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
-        var imageLinks = volumeInfo["imageLinks"];
-        content += "<img src=\"" + imageLinks["smallThumbnail"] + "\"><br>";
 
 
-      <!--  content += "<img src=\"" + imageLinks["thumbnail"] + "\"><br>";-->
+
+
         content += "language: " + volumeInfo["language"] + "<br>";
         content += "<a href=\"" + volumeInfo["previewLink"] + "\">preview link</a><br>";
         content += "<a href=\"" + volumeInfo["infoLink"] + "\">info link</a><br>";
