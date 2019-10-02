@@ -13,7 +13,17 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style type="text/css">
-
+img
+ {
+padding-left:20px;
+padding-right:40px;
+float:left;
+  }
+  di
+  {
+    padding-left:2px;
+    text-align:center;
+  }
 </style>
 <p><a href="Milestone1.html">Milestone 1</a><br/></p>
 <script type="text/javascript">
@@ -22,26 +32,27 @@
 $(function(){
 
       $.getJSON("https://www.googleapis.com/books/v1/volumes/Wfan6L9RGgYC",function(data){
-            var $bookinfo = $("#bookinfo");
-			var content = "";
 
-        content += "id: " + data["id"] + "<br>";
-        content += "etag: " + data["etag"] + "<br>";
-        content += "<a href=\"" + data["selfLink"] + "\">self link</a><br>";
+
+
 
         var volumeInfo = data["volumeInfo"];
-        content += "title: " + volumeInfo["title"] + "<br>";
-        content += "subtitle: " + volumeInfo["subtitle"] + "<br>";
-        content += "authors: " + volumeInfo["authors"] + "<br>";
-        content += "Publisher: " + volumeInfo["publisher"] + "<br>";
-        content += "PublishedDate: " + volumeInfo["publishedDate"] + "<br>";
 
 
         var imageLinks = volumeInfo["imageLinks"];
+
+                 var $bookinfo = $("#bookinfo");
+
+                 var content = "";
+               content += " " + volumeInfo["title"] + "<br>";
+
+               content += "subtitle: " + volumeInfo["subtitle"] + "<br>";
         content += "<img src=\"" + imageLinks["smallThumbnail"] + "\"><br>";
-        content += "Description: " + volumeInfo["description"] + "<br>";
+         content += "Book Description " +   volumeInfo["description"] + "<br>";
 
 
+
+        content += "id: " + data["id"] + "<br>";
 
         var indusIden = volumeInfo["industryIdentifiers"];
 
@@ -51,6 +62,19 @@ $(function(){
 
           content += "type: " + info2["type"] + "<br>";
           content += "identifier: " + info2["identifier"] + "<br>";
+          content += "etag: " + data["etag"] + "<br>";
+          content += "<a href=\"" + data["selfLink"] + "\">self link</a><br>";
+
+          var volumeInfo = data["volumeInfo"];
+
+
+
+
+
+          content += "authors: " + volumeInfo["authors"] + "<br>";
+          content += "Publisher: " + volumeInfo["publisher"] + "<br>";
+          content += "PublishedDate: " + volumeInfo["publishedDate"] + "<br>";
+
 
         })
         var readingModes = volumeInfo["readingModes"];
