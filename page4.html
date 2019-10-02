@@ -13,6 +13,12 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style type="text/css">
+h1 {
+  color: black;
+}
+h2 {
+  color: black;
+}
 .book-photo {
   float: left;
   width: 20%;
@@ -39,28 +45,28 @@ $(function(){
         var volumeInfo = info["volumeInfo"];
         var imageLinks = volumeInfo["imageLinks"];
         content += '<img src="' + imageLinks["smallThumbnail"]+'" class="book-photo" />';
-        content += " " + volumeInfo["title"] + "<br>";
-        content += "subtitle: " + volumeInfo["subtitle"] + "<br>";
-        content += "authors: " + volumeInfo["authors"] + "<br>";
-        content += "Publisher: " + volumeInfo["publisher"] + "<br>";
-        content += "PublishedDate: " + volumeInfo["publishedDate"] + "<br>";
-        content += "Description: " + volumeInfo["description"] + "<br>";
+        content += "<h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + volumeInfo["title"] + "</h1><br>";
+        content += "<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subtitle: " + volumeInfo["subtitle"] + "</h2><br>";
+        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;authors: " + volumeInfo["authors"] + "<br>";
+        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Publisher: " + volumeInfo["publisher"] + "<br>";
+        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PublishedDate: " + volumeInfo["publishedDate"] + "<br>";
+        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description: <br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + volumeInfo["description"] + "<br>";
         var indusIden = volumeInfo["industryIdentifiers"];
         $.each(indusIden, function(infoIndex1, info2) {
 
-          content += "type: " + info2["type"] + "<br>";
-          content += "identifier: " + info2["identifier"] + "<br>";
+          content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type: " + info2["type"] + "<br>";
+          content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifier: " + info2["identifier"] + "<br>";
 
         })
         var readingModes = volumeInfo["readingModes"];
-        content += "text: " + readingModes["text"] + "<br>";
-        content += "image: " + readingModes["image"] + "<br>";
+        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: " + readingModes["text"] + "<br>";
+        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image: " + readingModes["image"] + "<br>";
 
-        content += "pageCount: " + volumeInfo["pageCount"] + "<br>";
-        content += "printType: " + volumeInfo["printType"] + "<br>";
-        content += "categories: " + volumeInfo["categories"] + "<br>";
-        content += "averageRating: " + volumeInfo["averageRating"] + "<br>";
-        content += "ratingsCount: " + volumeInfo["ratingsCount"] + "<br>";
+        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pageCount: " + volumeInfo["pageCount"] + "<br>";
+        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printType: " + volumeInfo["printType"] + "<br>";
+        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;categories: " + volumeInfo["categories"] + "<br>";
+        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;averageRating: " + volumeInfo["averageRating"] + "<br>";
+        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ratingsCount: " + volumeInfo["ratingsCount"] + "<br>";
         content += "maturityRating: " + volumeInfo["maturityRating"] + "<br>";
         content += "allowAnonLogging: " + volumeInfo["allowAnonLogging"] + "<br>";
         content += "contentVersion: " + volumeInfo["contentVersion"] + "<br>";
