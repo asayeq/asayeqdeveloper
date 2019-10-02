@@ -19,7 +19,14 @@ padding-left:20px;
 padding-right:40px;
 float:left;
   }
-  di
+  .book-photo {
+    float: left;
+    width: 25%;
+    margin-left: 15px;
+  }
+  h2 {
+    color: black;
+  }
   {
     padding-left:2px;
     text-align:center;
@@ -44,10 +51,10 @@ $(function(){
                  var $bookinfo = $("#bookinfo");
 
                  var content = "";
-               content += " " + volumeInfo["title"] + "<br>";
+               content += "<h1> " + volumeInfo["title"] + "</h1><br>";
 
-               content += "subtitle: " + volumeInfo["subtitle"] + "<br>";
-        content += "<img src=\"" + imageLinks["smallThumbnail"] + "\"><br>";
+               content += "<h2>subtitle: " + volumeInfo["subtitle"] + "</h2><br>";
+        content += '<img src="' + imageLinks["smallThumbnail"] + '" class="book-photo" />';
          content += "Book Description " +   volumeInfo["description"] + "<br>";
 
 
@@ -62,21 +69,21 @@ $(function(){
 
           content += "type: " + info2["type"] + "<br>";
           content += "identifier: " + info2["identifier"] + "<br>";
-          content += "etag: " + data["etag"] + "<br>";
-          content += "<a href=\"" + data["selfLink"] + "\">self link</a><br>";
-
-          var volumeInfo = data["volumeInfo"];
 
 
 
 
 
+})
+
+content += "etag: " + data["etag"] + "<br>";
+content += "<a href=\"" + data["selfLink"] + "\">self link</a><br>";
           content += "authors: " + volumeInfo["authors"] + "<br>";
           content += "Publisher: " + volumeInfo["publisher"] + "<br>";
           content += "PublishedDate: " + volumeInfo["publishedDate"] + "<br>";
 
 
-        })
+
         var readingModes = volumeInfo["readingModes"];
         content += "text: " + readingModes["text"] + "<br>";
         content += "image: " + readingModes["image"] + "<br>";
