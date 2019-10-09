@@ -16,7 +16,7 @@ $(document).ready(function(){
         var author ='';
 
 
-        $.get("https://www.googleapis.com/books/v1/volumes?q=" + search,function(response){
+        $.get("https://www.googleapis.com/books/v1/volumes?q=search+terms" + search,function(response){
 
               for(i=0;i<response.items.length;i++)
               {
