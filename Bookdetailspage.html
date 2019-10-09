@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="style.css"/>
+
+<title>getJSON</title>
+<script type="text/javascript"> </script> src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<style type="text/css">
+
+</style>
+
+
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+var i = window.location.search;
+var s=i.split("=");
+var id=s[1];
+var url="https://www.googleapis.com/books/v1/volumes/"+id;
+console.log(url);
+
+            $.getJSON(url,function(data){
+            var $jsontip = $("jsonTip");
+            var strHtml = "<table>";
+
+            var volumeInfo = data["volumeInfo"];
+                  var readingModes = volumeInfo["readingModes"];
+
+            var imageLinks = volumeInfo["imageLinks"];
+            strHtml +="<tr><td>";
+            strHtml +='<img src="'+imageLinks["thumbnail"]+'" class="book-photo" />';
+            strHtml += "><h1>Title: " + volumeInfo["title"] + "</h1>";
+            strHtml += "Subtitle: " + volumeInfo["subtitle"] + "<br>";
+            strHtml += "Authors: " + volumeInfo ["authors"] +"<br>";
+            strHtml += "Publisher: " + volumeInfo["No Starch PRESS"] + "<br>";
+            strHtml += "PublishedDate: " + volumeInfo["2013"] + "<br>";
+            strHtml += "Description: " + volumeInfo["description"] + "<br>";
+            var IndustryIdentifiers = volumeInfo["industryIdentifiers"];
+            $.each(IndustryIdentifiers,function(infoIndex,info2){
+            strHtml += "Type: " + info2["type"] + "<br>";
+            strHtml += "Identifier: " + info2["identifier"] + "<br>"
+            })
+
+
+            strHtml += "</td></tr>";
+
+
+              strHtml +="</table>";
+
+            $jsontip.html(strHtml);
+          });
+
+
+
+
+
+
+</script>
+
+</head>
+
+
+
+<body>
+
+              <h3>Google-Books Details</h3>
+
+<br />
+<div id="divframo">
+
+  <div id="jsonTip">
+  </div>
+  </div>
+  </body>
+  </html>
