@@ -19,33 +19,33 @@
 $(document).ready(function(){
             $.getJSON("https://www.googleapis.com/books/v1/users/106473463888419424654/bookshelves/0/volumes",function(data1){
             var $jsontip = $("#jsonTip");
-        var strHtml = "<table>";
+        var content = "<table>";
             var items = data1["items"];
-                strHtml +="<table> ";
+                content +="<table> ";
             $.each(items,function(infoIndex,data) {
             var volumeInfo = data["volumeInfo"];
             var imageLinks = volumeInfo["imageLinks"];
                 strHtml += '<tr><td> <img src='
-                try{strHtml+= imageLinks["thumbnail"];
+                try{content+= imageLinks["thumbnail"];
                 }
                 catch(err){
-                strHtml+="https://books.google.com/googlebooks/images/no_cover_thumb.gif";}
-                strHtml += "class ='book-photo' 'width=50px'?><h1>Title: " + volumeInfo["title"] + "</h1>";
-                strHtml += "Subtitle: " + volumeInfo["subtitle"] + "<br>";
-                strHtml += "Authors: " + volumeInfo ["authors"] +"<br>";
-                strHtml += "Publisher: " + volumeInfo["publisher"] + "<br>";
-                strHtml += "PublishedDate: " + volumeInfo["publishedDate"] + "<br>";
-                strHtml += "Description: " + volumeInfo["description"] + "<br>";
+                content+="https://books.google.com/googlebooks/images/no_cover_thumb.gif";}
+                content += "class ='book-photo' 'width=50px'?><h1>Title: " + volumeInfo["title"] + "</h1>";
+                content += "Subtitle: " + volumeInfo["subtitle"] + "<br>";
+                content += "Authors: " + volumeInfo ["authors"] +"<br>";
+                content += "Publisher: " + volumeInfo["publisher"] + "<br>";
+                content += "PublishedDate: " + volumeInfo["publishedDate"] + "<br>";
+                content += "Description: " + volumeInfo["description"] + "<br>";
                 var IndustryIdentifiers = volumeInfo["industryIdentifiers"];
                 var readingModes = volumeInfo["readingModes"];
-                strHtml += "PageCount: " + volumeInfo + volumeInfo["pageCount"] + "<br>";
-                strHtml += "PrintType: " + volumeInfo + volumeInfo["printType"] + "<br>";
-                strHtml += "<a href='./Bookdetail.html?s="+data1.items[infoIndex].id+"'target='_blank'> Book Details</a></td></tr>";
+                content += "PageCount: " + volumeInfo + volumeInfo["pageCount"] + "<br>";
+                content += "PrintType: " + volumeInfo + volumeInfo["printType"] + "<br>";
+                content += "<a href='./Bookdetail.html?s="+data1.items[infoIndex].id+"'target='_blank'> Book Details</a></td></tr>";
 
                 })
-                strHtml +="</table>";
+                content +="</table>";
 
-                $jsontip.html(strHtml);
+                $jsontip.html(content);
               });
 
 
