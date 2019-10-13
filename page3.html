@@ -15,17 +15,31 @@
 <style type="text/css">
 img
  {
-padding-left:20px;
+padding-left:2px;
 padding-right:40px;
 float:left;
   }
   .book-photo {
     float: left;
-    width: 25%;
-    margin-left: 15px;
+    width: 20%;
+    margin-left: 0;
+  }
+
+  h1{
+    margin: 0;
+    text-align: center;
+  }
+  h4{
+    margin: 0px 0px 0px 0px;
+    display: inline;
+  }
+  p{
+    display: inline;
+    text-align: justify;
   }
   h2 {
     color: black;
+    margin: auto;
   }
   {
     padding-left:2px;
@@ -53,9 +67,9 @@ $(function(){
                  var content = "";
                content += "<h1> " + volumeInfo["title"] + "</h1><br>";
 
-               content += "<h2>subtitle: " + volumeInfo["subtitle"] + "</h2><br>";
+               content += "<h2>Subtitle: " + volumeInfo["subtitle"] + "</h2><br>";
         content += '<img src="' + imageLinks["smallThumbnail"] + '" class="book-photo" />';
-         content += "Book Description " +   volumeInfo["description"] + "<br>";
+         content += "<h4><p>Book Description:</h4> " +volumeInfo["description"] + "</p><br><br>";
 
 
 
@@ -78,55 +92,55 @@ $(function(){
 
 content += "etag: " + data["etag"] + "<br>";
 content += "<a href=\"" + data["selfLink"] + "\">self link</a><br>";
-          content += "authors: " + volumeInfo["authors"] + "<br>";
+          content += "Authors: " + volumeInfo["authors"] + "<br>";
           content += "Publisher: " + volumeInfo["publisher"] + "<br>";
           content += "PublishedDate: " + volumeInfo["publishedDate"] + "<br>";
 
 
 
         var readingModes = volumeInfo["readingModes"];
-        content += "text: " + readingModes["text"] + "<br>";
-        content += "image: " + readingModes["image"] + "<br>";
+        //content += "text: " + readingModes["text"] + "<br>";
+        //content += "image: " + readingModes["image"] + "<br>";
 
         content += "pageCount: " + volumeInfo["pageCount"] + "<br>";
         content += "printType: " + volumeInfo["printType"] + "<br>";
-        content += "categories: " + volumeInfo["categories"] + "<br>";
-        content += "averageRating: " + volumeInfo["averageRating"] + "<br>";
-        content += "ratingsCount: " + volumeInfo["ratingsCount"] + "<br>";
-        content += "maturityRating: " + volumeInfo["maturityRating"] + "<br>";
-        content += "allowAnonLogging: " + volumeInfo["allowAnonLogging"] + "<br>";
-        content += "contentVersion: " + volumeInfo["contentVersion"] + "<br>";
-        content += "panelizationSummary: " + volumeInfo["panelizationSummary"] + "<br>";
+        //content += "categories: " + volumeInfo["categories"] + "<br>";
+        //content += "averageRating: " + volumeInfo["averageRating"] + "<br>";
+        //content += "ratingsCount: " + volumeInfo["ratingsCount"] + "<br>";
+        //content += "maturityRating: " + volumeInfo["maturityRating"] + "<br>";
+        //content += "allowAnonLogging: " + volumeInfo["allowAnonLogging"] + "<br>";
+        //content += "contentVersion: " + volumeInfo["contentVersion"] + "<br>";
+        //content += "panelizationSummary: " + volumeInfo["panelizationSummary"] + "<br>";
         var panelizationSummary = volumeInfo["panelizationSummary"];
-        content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
-        content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
+        //content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
+        //content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
 
 
 
         content += "language: " + volumeInfo["language"] + "<br>";
-        content += "<a href=\"" + volumeInfo["previewLink"] + "\">preview link</a><br>";
+        //content += "<a href=\"" + volumeInfo["previewLink"] + "\">preview link</a><br>";
         content += "<a href=\"" + volumeInfo["infoLink"] + "\">info link</a><br>";
-        content += "<a href=\"" + volumeInfo["canonicalVolumeLink"] + "\">canonical volume link</a><br>";
+        //content += "<a href=\"" + volumeInfo["canonicalVolumeLink"] + "\">canonical volume link</a><br>";
 
         var saleInfo = data["saleInfo"];
         content += "country: " + saleInfo["country"] + "<br>";
-        content += "saleability: " + saleInfo["saleability"] + "<br>";
+        //content += "saleability: " + saleInfo["saleability"] + "<br>";
         content += "isEbook: " + saleInfo["isEbook"] + "<br>";
 
-        var accessInfo = data["accessInfo"];
-        content += "country: " + accessInfo["country"] + "<br>";
-        content += "viewability: " + accessInfo["viewability"] + "<br>";
-        content += "embeddable: " + accessInfo["embeddable"] + "<br>";
-        content += "publicDomain: " + accessInfo["publicDomain"] + "<br>";
-        content += "textToSpeechPermission: " + accessInfo["textToSpeechPermission"] + "<br>";
+        //var accessInfo = data["accessInfo"];
+        //content += "country: " + accessInfo["country"] + "<br>";
+        //content += "viewability: " + accessInfo["viewability"] + "<br>";
+        //content += "embeddable: " + accessInfo["embeddable"] + "<br>";
+        //content += "publicDomain: " + accessInfo["publicDomain"] + "<br>";
+        //content += "textToSpeechPermission: " + accessInfo["textToSpeechPermission"] + "<br>";
 
-        var epub = accessInfo["epub"];
-        content += "isAvailable: " + epub["isAvailable"] + "<br>";
-        var pdf = accessInfo["pdf"];
-        content += "isAvailable: " + pdf["isAvailable"] + "<br>";
-        content += "webReaderLink: " + accessInfo["webReaderLink"] + "<br>";
-        content += "accessViewStatus: " + accessInfo["accessViewStatus"] + "<br>";
-        content += "quoteSharingAllowed: " + accessInfo["quoteSharingAllowed"] + "<br>";
+        //var epub = accessInfo["epub"];
+        //content += "isAvailable: " + epub["isAvailable"] + "<br>";
+        //var pdf = accessInfo["pdf"];
+        //content += "isAvailable: " + pdf["isAvailable"] + "<br>";
+        //content += "webReaderLink: " + accessInfo["webReaderLink"] + "<br>";
+        //content += "accessViewStatus: " + accessInfo["accessViewStatus"] + "<br>";
+        //content += "quoteSharingAllowed: " + accessInfo["quoteSharingAllowed"] + "<br>";
 
 			$bookinfo.html(content);
 			})
