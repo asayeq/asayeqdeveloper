@@ -1,13 +1,40 @@
-<!doctype html>
-<html lang="en">
+<!-- <!DOCTYPE html>
+<html>
 <head>
-<meta charset="utf-8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <link rel="stylesheet" href="mystyle.css"/>
 
 <title>book search page</title>
 
+<script type="text/javascript">
 
+$(document).ready(function(){
+
+    $("#myform").submit(function(){
+
+    var search = $("#books").val();
+
+    if(search == '')
+    {
+      alert("Please enter something in the field first");
+    }
+
+      $.getJSON(""https://www.googleapis.com/books/v1/volumes?q=" + search",function(data){
+            var $result = $("#result");
+			var content = "";
+			var data1 = data["items"];
+			content += "<br>";
+			$.each(data1,function(infoIndex,info){
+
+        content += "<img src=\"" + info["selfLink"] + "\"><br>";
+        content += "Title: " + info["title"] + "<br>";
+				})
+			$result.html(content);
+			})
+    })
+
+	})
+</script>
 
 <body class="#212121 grey lighten-4">
 
@@ -15,7 +42,6 @@
 
         <form id="myform">
 
-              <div class="input-field">
 
                   <div class="input-field">
                         <input type="search" id="books">
@@ -29,7 +55,7 @@
 
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0/100.2/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script src="myscript.js"></script>
 
 
@@ -38,4 +64,64 @@
 
 </body>
 </head>
+</html> -->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="style.css"/>
+
+<title>Advanced Webdevelopment</title>
+<script type="text/javascript"> </script>
+
+<meta name="description" content="page1.html">
+
+<meta name="author" content="Aimal Sayeq">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+  $("button").click(function() {
+    var searchin = document.getElementById("search").value;
+    $.getJSON("https://www.googleapis.com/books/v1/volumes?q=" + searchin,function(data){
+          var $bookinfo = $("#bookinfo");
+    var content = "";
+    var data1 = data["items"];
+    content += "total items: " + data["totalItems"] + "<br>";
+    $.each(data1,function(infoIndex,info){
+
+
+      var volumeInfo = info["volumeInfo"];
+      var images = volumeInfo["imageLinks"];
+      content += "<img src=\"" + images["thumbnail"] + "\"><br>";
+      content += "Title: <a href = \"Bookdetailspage.html?sea=" + info["id"] + "\">" + volumeInfo["title"] + "</a><br>";
+      content += ""
+
+    });
+    $bookinfo.html(content);
+  });
+});
+});
+</script>
+</head>
+<body>
+<br />
+<input type = "text" id = "search">
+<button>Search page</button>
+<div id="divframe">
+  <div id="bookinfo">
+  </div>
+</div>
+  <p><h1><a href="index.html">back to index page</a></h1><br/></p>
+<p><a href="bookshelf.html">bookshelf page</a><br/></p>
+</body>
 </html>
