@@ -5,51 +5,64 @@
 <link rel="stylesheet" href="style.css"/>
 
 <title>book search page</title>
-<script type="text/javascript"> </script> src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style type="text/css">
 
+#divframe{
+border:  1px solid black;
+width: 76%;
+margin: auto;
+border: center;
+padding: 10px;
+border-radius: 25px;
+
+
+}
+
 </style>
-<meta name="description" content="Milestone1">
+<meta name="description" content="Bookshelf">
 
 <meta name="author" content="Aimal Sayeq">
 
 <script type="text/javascript">
 
 
-$(document).ready(function(){
-            $.getJSON("https://www.googleapis.com/books/v1/users/106473463888419424654/bookshelves/0/volumes",function(data1){
-            var $jsontip = $("#jsonTip");
-        var content = "<table>";
-            var items = data1["items"];
-                content +="<table> ";
-            $.each(items,function(infoIndex,data) {
-            var volumeInfo = data["volumeInfo"];
-            var imageLinks = volumeInfo["imageLinks"];
-                strHtml += '<tr><td> <img src='
-                try{content+= imageLinks["thumbnail"];
-                }
-                catch(err){
-                content+="https://books.google.com/googlebooks/images/no_cover_thumb.gif";}
-                content += "class ='book-photo' 'width=50px'?><h1>Title: " + volumeInfo["title"] + "</h1>";
-                content += "Subtitle: " + volumeInfo["subtitle"] + "<br>";
-                content += "Authors: " + volumeInfo ["authors"] +"<br>";
-                content += "Publisher: " + volumeInfo["publisher"] + "<br>";
-                content += "PublishedDate: " + volumeInfo["publishedDate"] + "<br>";
-                content += "Description: " + volumeInfo["description"] + "<br>";
-                var IndustryIdentifiers = volumeInfo["industryIdentifiers"];
-                var readingModes = volumeInfo["readingModes"];
-                content += "PageCount: " + volumeInfo + volumeInfo["pageCount"] + "<br>";
-                content += "PrintType: " + volumeInfo + volumeInfo["printType"] + "<br>";
-                content += "<a href='./Bookdetail.html?s="+data1.items[infoIndex].id+"'target='_blank'> Book Details</a></td></tr>";
-
-                })
-                content +="</table>";
-
-                $jsontip.html(content);
-              });
+$(function(){
+  $.getJSON("https://www.googleapis.com/books/v1/users/114608417587755999657/bookshelves/1001/volumes",function(data){
+       var $bookinfo = $("#bookinfo");
+  var content = "";
+  var data1 = data["items"];
+  content += "<br>";
+  $.each(data1,function(infoIndex,info){
+    var volumeInfo = info["volumeInfo"];
+  var imageLinks = volumeInfo["imageLinks"];
+   var ii = volumeInfo["industryIdentifiers"];
+    content += "<img src=\"" + imageLinks["smallThumbnail"] + "\"><br>";
+    content += "ID: " + info["id"] + "<br>";
+    content += "Title: <a href = \"Bookdetailspage.html?sea=" + info["id"] + "\">" + volumeInfo["title"] + "</a><br>";
 
 
-          });
+
+    content += "SubTitle: " + volumeInfo["subtitle"] + "<br>";
+    content += "Description: " + volumeInfo["description"] + "<br>";
+$.each(ii,function(infoIndex,info1){
+    content += "isbn: " + info1["identifier"] + "<br>";
+  });
+    content += "<br>";
+    })
+
+
+
+
+
+
+
+
+  $bookinfo.html(content);
+  })
+
+
+})
 
 
 
@@ -68,10 +81,11 @@ $(document).ready(function(){
               <h3>My Bookshelf</h3>
 
 <br />
-<div id="divframo">
+<div id="divframe">
 
-  <div id="jsonTip">
+  <div id="bookinfo">
   </div>
   </div>
+    <p><h1><a href="Milestone2.html">back to Milestone2 page</a></h1><br/></p>
   </body>
   </html>
