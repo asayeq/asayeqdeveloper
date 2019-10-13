@@ -20,5 +20,24 @@ button{
     margin-buttom:15px;
 }
 #result{
-  
+
+}
+h1{
+ text-align: center;
+ margin:0
+}
+h4{
+ margin:0
+}
+h5{
+ margin:0
+}
+img{
+ padding:50px;
+ max-width: 100%;
+ float: left;
+}
+img.thumnail{
+ width:100px;
+ height:70px;
 }
