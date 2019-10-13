@@ -1,77 +1,160 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<link rel="stylesheet" href="style.css"/>
-
-<title>getJSON</title>
-<script type="text/javascript"> </script> src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<style type="text/css">
-
-</style>
 
 
-<script type="text/javascript">
+  <!doctype html>
+  <html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css"/>
+
+  <title>Advanced Webdevelopment</title>
+  <script type="text/javascript"> </script>
+
+  <meta name="description" content="page1.html">
+
+  <meta name="author" content="Aimal Sayeq">
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <style type="text/css">
+  img
+   {
+  padding-left:2px;
+  padding-right:40px;
+  float:left;
+    }
+    .book-photo {
+      float: left;
+      width: 20%;
+      margin-left: auto;
+      margin-right: 16px;
+    }
+    h5{
+      margin: 0px 0px 0px 0px;
+      display: inline;
+    }
+    h4{
+      display: inline;
+      margin: auto;
+      tex-align: justify
+      float: left;
+    }
+    #divframe{
+    border:  1px solid black;
+    width: 76%;
+
+    margin: auto;
+    border: center;
+    padding: 10px;
+    border-radius: 25px;
 
 
-$(document).ready(function(){
-var i = window.location.search;
-var s=i.split("=");
-var id=s[1];
-var url="https://www.googleapis.com/books/v1/volumes/"+id;
-console.log(url);
-
-            $.getJSON(url,function(data){
-            var $jsontip = $("jsonTip");
-            var content = "<table>";
-
-            var volumeInfo = data["volumeInfo"];
-                  var readingModes = volumeInfo["readingModes"];
-
-            var imageLinks = volumeInfo["imageLinks"];
-            content +="<tr><td>";
-            content +='<img src="'+imageLinks["thumbnail"]+'" class="book-photo" />';
-            content += "><h1>Title: " + volumeInfo["title"] + "</h1>";
-            content += "Subtitle: " + volumeInfo["subtitle"] + "<br>";
-            content += "Authors: " + volumeInfo ["authors"] +"<br>";
-            content += "Publisher: " + volumeInfo["No Starch PRESS"] + "<br>";
-            content += "PublishedDate: " + volumeInfo["2013"] + "<br>";
-            content += "Description: " + volumeInfo["description"] + "<br>";
-            var IndustryIdentifiers = volumeInfo["industryIdentifiers"];
-            $.each(IndustryIdentifiers,function(infoIndex,info2){
-            content += "Type: " + info2["type"] + "<br>";
-            content += "Identifier: " + info2["identifier"] + "<br>"
-            })
-
-
-            content += "</td></tr>";
-
-
-              content +="</table>";
-
-            $jsontip.html(content);
-          });
+    }
+    td;
 
 
 
+p{
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+#divframe{
+  position: absolute;
+  top: 60px;
+  left: 50px;
+  transform: translate(10%, 5%);
+  background: #FFFFCC;
+
+}
+#dd{
+  position: absolute;
+  top: 20px;
+  left: 590px;
+}
+#cc{
+  position: absolute;
+  top: -5px;
+  left: 1180px;
+}
+#dc{
+  position: absolute;
+  top: 20px;
+  left: 1180px;
+}
+body{
+  background-color: #E3DEC1;
+}
+
+
+  </style>
+
+  <script type="text/javascript">
+// https://www.googleapis.com/books/v1/volumes/noi76uKOJ5wC
+
+  $(function(){
+    var i = window.location.href;
+    var s=i.split("=");
+    var id=s[1];
+    var url="https://www.googleapis.com/books/v1/volumes/"+id;
+
+        $.getJSON(url,function(data){
+              var $bookinfo = $("#bookinfo");
+
+        var content = "<table>";
+
+
+        var volumeInfo = data["volumeInfo"];
+        content+="<table>"
+        var readingModes = volumeInfo["readingModes"];
+
+        var imageLinks = volumeInfo["imageLinks"];
+
+          var saleInfo = data["saleInfo"];
+        content += '<img src="' + imageLinks["smallThumbnail"] + '" class="book-photo" />';
+
+        content += "<h1>Title: " + volumeInfo["title"] + "</h1><br>";
+        content += "<h4>Subtitle: " + volumeInfo["subtitle"] + "</h4><br>";
+        content += "<h5>Authors:</h5> " + volumeInfo["authors"] + "<br>";
+        content += "<h5>Publisher:</h5> " + volumeInfo["publisher"] + "<br>";
+        content += "<h5>PublishedDate:</h5> " + volumeInfo["publishedDate"] + "<br>";
+        content += "<h5>ID:</h5> " + data["id"] + "<br>";
+        content += "<h5>PageCount</h5>: " + volumeInfo["pageCount"] + "<br>";
+          content += "<h5>country:</h5> " + saleInfo["country"] + "<br>";
+          content += "<h5>price:</h5> " + saleInfo["listPrice"] + "<br>";
+
+
+        content += "<h5>printType:</h5> " + volumeInfo["printType"] + "<br><br>";
+
+        content += "<h4>Book Description:</h4> " +   volumeInfo["description"] + "<br>";
 
 
 
-</script>
-
-</head>
 
 
+content+="</table>";
 
-<body>
 
-              <h3>Google-Books Details</h3>
+  			$bookinfo.html(content);
+      });
 
-<br />
-<div id="divframo">
 
-  <div id="jsonTip">
+  	});
+  </script>
+  </head>
+  <body>
+  <br />
+  <div id="divframe">
+
+
+    <div id="bookinfo">
+    </div>
+
   </div>
-  </div>
+  <p><b><a href="Bookshelf.html">Back to bookshelf page</a><b><br/></p>
+  <p id="dd"><b><font size="6"> Book Details page</font></b></p>
+  <p id="cc"> Student Name: Aimal Sayeq</p>
+  <p id="dc"> Course: Advanced Webdevelopment</p>
+
+
+
   </body>
   </html>
