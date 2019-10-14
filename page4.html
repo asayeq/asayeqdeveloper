@@ -24,7 +24,31 @@ h2 {
   width: 20%;
   margin-left: 15px;
 }
+#divframe{
+border:  1px solid black;
+width: 76%;
 
+margin: auto;
+border: center;
+padding: 10px;
+border-radius: 25px;
+
+}
+#a{
+  position: absolute;
+  top: -5px;
+  left: 590px;
+}
+#b{
+  position: absolute;
+  top: -5px;
+  left: 1180px;
+}
+#c{
+  position: absolute;
+  top: 20px;
+  left: 1180px;
+}
 </style>
 <p><a href="Milestone1.html">Milestone 1</a><br/></p>
 <script type="text/javascript">
@@ -47,33 +71,22 @@ $(function(){
         content += '<img src="' + imageLinks["smallThumbnail"]+'" class="book-photo" />';
         content += "<h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + volumeInfo["title"] + "</h1><br>";
         content += "<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subtitle: " + volumeInfo["subtitle"] + "</h2><br>";
-        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;authors: " + volumeInfo["authors"] + "<br>";
+        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Authors: " + volumeInfo["authors"] + "<br>";
         content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Publisher: " + volumeInfo["publisher"] + "<br>";
         content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PublishedDate: " + volumeInfo["publishedDate"] + "<br>";
-        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description: <br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + volumeInfo["description"] + "<br>";
+
         var indusIden = volumeInfo["industryIdentifiers"];
         $.each(indusIden, function(infoIndex1, info2) {
 
-          content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type: " + info2["type"] + "<br>";
-          content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifier: " + info2["identifier"] + "<br>";
 
         })
         var readingModes = volumeInfo["readingModes"];
-        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: " + readingModes["text"] + "<br>";
-        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image: " + readingModes["image"] + "<br>";
+
 
         content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pageCount: " + volumeInfo["pageCount"] + "<br>";
-        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printType: " + volumeInfo["printType"] + "<br>";
-        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;categories: " + volumeInfo["categories"] + "<br>";
-        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;averageRating: " + volumeInfo["averageRating"] + "<br>";
-        content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ratingsCount: " + volumeInfo["ratingsCount"] + "<br>";
-        content += "maturityRating: " + volumeInfo["maturityRating"] + "<br>";
-        content += "allowAnonLogging: " + volumeInfo["allowAnonLogging"] + "<br>";
-        content += "contentVersion: " + volumeInfo["contentVersion"] + "<br>";
-        content += "panelizationSummary: " + volumeInfo["panelizationSummary"] + "<br>";
+
         var panelizationSummary = volumeInfo["panelizationSummary"];
-        content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
-        content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
+
 
 
 
@@ -81,29 +94,17 @@ $(function(){
         content += "language: " + volumeInfo["language"] + "<br>";
         content += "<a href=\"" + volumeInfo["previewLink"] + "\">preview link</a><br>";
         content += "<a href=\"" + volumeInfo["infoLink"] + "\">info link</a><br>";
-        content += "<a href=\"" + volumeInfo["canonicalVolumeLink"] + "\">canonical volume link</a><br>";
+        //content += "<a href=\"" + volumeInfo["canonicalVolumeLink"] + "\">canonical volume link</a><br>";
 
         var saleInfo = info["saleInfo"];
-        content += "country: " + saleInfo["country"] + "<br>";
-        content += "saleability: " + saleInfo["saleability"] + "<br>";
+
         content += "isEbook: " + saleInfo["isEbook"] + "<br>";
 
         var accessInfo = info["accessInfo"];
-        content += "country: " + accessInfo["country"] + "<br>";
-        content += "viewability: " + accessInfo["viewability"] + "<br>";
-        content += "embeddable: " + accessInfo["embeddable"] + "<br>";
-        content += "publicDomain: " + accessInfo["publicDomain"] + "<br>";
-        content += "textToSpeechPermission: " + accessInfo["textToSpeechPermission"] + "<br>";
+        content += "country: " + accessInfo["country"] + "<br><br>";
 
-        var epub = accessInfo["epub"];
-        content += "isAvailable: " + epub["isAvailable"] + "<br>";
-        var pdf = accessInfo["pdf"];
-        content += "isAvailable: " + pdf["isAvailable"] + "<br>";
-        content += "webReaderLink: " + accessInfo["webReaderLink"] + "<br>";
-        content += "accessViewStatus: " + accessInfo["accessViewStatus"] + "<br>";
-        content += "quoteSharingAllowed: " + accessInfo["quoteSharingAllowed"] + "<br>";
         var searchInfo = info["searchInfo"];
-        content += "textSnippet: " + searchInfo["textSnippet"] + "<br><br><br>";
+          content += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description: <br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + volumeInfo["description"] + "<br>";
 
 
 
@@ -131,7 +132,9 @@ $(function(){
   </div>
 </div>
 
-
+<p id="a"><b><font size="6"> Open Library Search Results </font></b></p>
+<p id="b"> Student Name: Aimal Sayeq</p>
+<p id="c"> Course: Advanced Webdevelopment</p>
 
 
 </body>
