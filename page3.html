@@ -45,6 +45,21 @@ float:left;
     padding-left:2px;
     text-align:center;
   }
+  #a{
+    position: absolute;
+    top: -5px;
+    left: 590px;
+  }
+  #b{
+    position: absolute;
+    top: -5px;
+    left: 1180px;
+  }
+  #c{
+    position: absolute;
+    top: 20px;
+    left: 1180px;
+  }
 </style>
 <p><a href="Milestone1.html">Milestone 1</a><br/></p>
 <script type="text/javascript">
@@ -99,48 +114,25 @@ content += "<a href=\"" + data["selfLink"] + "\">self link</a><br>";
 
 
         var readingModes = volumeInfo["readingModes"];
-        //content += "text: " + readingModes["text"] + "<br>";
-        //content += "image: " + readingModes["image"] + "<br>";
+
 
         content += "pageCount: " + volumeInfo["pageCount"] + "<br>";
         content += "printType: " + volumeInfo["printType"] + "<br>";
-        //content += "categories: " + volumeInfo["categories"] + "<br>";
-        //content += "averageRating: " + volumeInfo["averageRating"] + "<br>";
-        //content += "ratingsCount: " + volumeInfo["ratingsCount"] + "<br>";
-        //content += "maturityRating: " + volumeInfo["maturityRating"] + "<br>";
-        //content += "allowAnonLogging: " + volumeInfo["allowAnonLogging"] + "<br>";
-        //content += "contentVersion: " + volumeInfo["contentVersion"] + "<br>";
-        //content += "panelizationSummary: " + volumeInfo["panelizationSummary"] + "<br>";
+
         var panelizationSummary = volumeInfo["panelizationSummary"];
-        //content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
-        //content += "containsEpubBubbles: " + panelizationSummary["containsEpubBubbles"] + "<br>";
 
 
 
         content += "language: " + volumeInfo["language"] + "<br>";
-        //content += "<a href=\"" + volumeInfo["previewLink"] + "\">preview link</a><br>";
+
         content += "<a href=\"" + volumeInfo["infoLink"] + "\">info link</a><br>";
-        //content += "<a href=\"" + volumeInfo["canonicalVolumeLink"] + "\">canonical volume link</a><br>";
+
 
         var saleInfo = data["saleInfo"];
         content += "country: " + saleInfo["country"] + "<br>";
-        //content += "saleability: " + saleInfo["saleability"] + "<br>";
+
         content += "isEbook: " + saleInfo["isEbook"] + "<br>";
 
-        //var accessInfo = data["accessInfo"];
-        //content += "country: " + accessInfo["country"] + "<br>";
-        //content += "viewability: " + accessInfo["viewability"] + "<br>";
-        //content += "embeddable: " + accessInfo["embeddable"] + "<br>";
-        //content += "publicDomain: " + accessInfo["publicDomain"] + "<br>";
-        //content += "textToSpeechPermission: " + accessInfo["textToSpeechPermission"] + "<br>";
-
-        //var epub = accessInfo["epub"];
-        //content += "isAvailable: " + epub["isAvailable"] + "<br>";
-        //var pdf = accessInfo["pdf"];
-        //content += "isAvailable: " + pdf["isAvailable"] + "<br>";
-        //content += "webReaderLink: " + accessInfo["webReaderLink"] + "<br>";
-        //content += "accessViewStatus: " + accessInfo["accessViewStatus"] + "<br>";
-        //content += "quoteSharingAllowed: " + accessInfo["quoteSharingAllowed"] + "<br>";
 
 			$bookinfo.html(content);
 			})
@@ -157,7 +149,10 @@ content += "<a href=\"" + data["selfLink"] + "\">self link</a><br>";
   </div>
 </div>
 
-
+<p><a href="Milestone1.html">Page 1</a><br/></p>
+<p id="a"><b><font size="6"> Google Book Details </font></b></p>
+<p id="b"> Student Name: Aimal Sayeq</p>
+<p id="c"> Course: Advanced Webdevelopment</p>
 
 
 </body>
