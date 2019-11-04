@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+<title>City and state for the ZIP 93118</title>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+$(function(){
+
+//calling jquery getJSON()method
+
+$.getJSON(
+//url parameter
+"http://ZiptasticAPI.com/93118",function (data){
+//displaying result on the console
+console.log(data);
+
+//displaying result on the document
+
+document.write("<h1>City and State for the ZIP=93118</h1><br/>:" +data.city+ "<br/>State:" + data.state);
+});
+});
+</script>
+</head>
+</html>
