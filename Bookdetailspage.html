@@ -45,7 +45,7 @@
     border: center;
     padding: 10px;
     border-radius: 25px;
-    
+
 
     }
     td;
@@ -115,7 +115,7 @@ body{
           var saleInfo = data["saleInfo"];
         content += '<img src="' + imageLinks["smallThumbnail"] + '" class="book-photo" />';
 
-        content += "<h1>Title: " + volumeInfo["title"] + "</h1><br>";
+        content += "<h1>Title: " + volumeInfo["title"] + "</h1><br>"; //Mustache template conversion: <h1>Title: {{title}} </h1><br>
         content += "<h4>Subtitle: " + volumeInfo["subtitle"] + "</h4><br>";
         content += "<h5>Authors:</h5> " + volumeInfo["authors"] + "<br>";
         content += "<h5>Publisher:</h5> " + volumeInfo["publisher"] + "<br>";
