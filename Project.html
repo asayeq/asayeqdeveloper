@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8"/>
+
+<style>
+
+.searchbox{
+
+text-align: center;
+
+}
+
+img{padding: 20px;
+
+float: left;
+
+margin-right: 15px;
+
+}
+
+html{
+
+background:#b9dbf0;}
+
+#shelfdetails
+
+{
+
+flex-wrap:wrap;
+
+position: fixed;
+
+top:50px;
+
+left: 120px;
+
+width: 80%;
+
+overflow:auto;
+
+height: 80%;
+
+background-color:#bcd4e6;;
+
+padding: 50px 10px 10px 10px;
+
+display: none;
+
+z-index: 1;
+
+}
+
+#bookdetails
+
+{
+
+position: fixed;
+
+top:50px;
+
+left: 120px;
+
+width: 80%;
+
+overflow:auto;
+
+height: 80%;
+
+background-color:#bcd4e6;
+
+padding: 50px 10px 10px 10px;
+
+display: none;
+
+z-index: 2;
+
+}
+
+#hideButton{
+
+position: absolute;
+
+top:30px;
+
+right:30px;
+
+}
+
+#hideShelf{
+
+position: absolute;
+
+top:30px;
+
+right:30px;
+
+}
+
+.bookdiv{
+
+border:3px solid #bcd4e6;
+
+border-radius: 2px;
+
+width : 23%;
+
+flex-grow : 1;
+
+margin: 5 px;
+
+text-align: center;
+
+padding: 3px;
+
+}
+
+#jsonTip{
+
+display: flex;
+
+flex-wrap: wrap;
+
+}
+
+</style>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+</head>
+
+<script>
+
+$(document).ready(function() {
+
+$("#Searchbutton").click(function(){
+
+console.log("outside");
+
+$.getJSON("https://api.themoviedb.org/3/search/movie?api_key=9c25c51876d55c183e62996849b9fe6d&language=en-US&page=1&query=" + +"&include_adult=false",function(data){
+
+console.log(data);
+
+}).fail(function( jqxhr, textStatus, error ) {
+
+var err = textStatus + ", " + error;
+
+console.log( "Request Failed: " + err );
+
+});
+
+});
+
+});
+
+</script>
+
+<body>
+
+<h2 style="color:blue;"> MOVIE DATABASE</h2>
+
+<input type="text" name="searchValue" id ="searchValue" autofocus placeholder = " Search" size = "60"><br>
+
+<button type="button" id="Searchbutton"> Search</button>
+
+<div id= "Search">
+
+<a style="position:absolute; top:1%; right:5%"; href="index.html">Home page</a>
+
+</div>
+
+</body>
+
+</html>
