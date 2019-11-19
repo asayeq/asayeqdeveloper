@@ -251,11 +251,11 @@ $("bookshelf").css("display","flex");
 }
 function changeView(){
   console.log('here');
-  console.log($("#view").attr("viewType"));
+  console.log($("#viewButton").attr("viewType"));
 
-  if ($("#view").attr("viewType")=="grid"){
+  if ($("#viewButton").attr("viewType")=="grid"){
     $(".bookinfo").css("width","98%");
-    $("#view").attr("viewType","list");
+    $("#viewButton").attr("viewType","list");
   }
   else{
     $(".bookinfo").css("width","23%");
