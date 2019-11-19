@@ -221,6 +221,19 @@ $("bookshelf").css("display","flex");
 
 
 }
+function changeView(){
+  console.log('here');
+  console.log($("#viewButton").attr("viewType"));
+  if ($("#viewButton").attr("viewType")==="grid"){
+    $(".bookinfo").css("width","98%");
+    $("#viewButton").attr("viewType","list");
+  }
+  else{
+    $(".bookdiv").css("width","23%");
+    $("#viewButton").attr("viewType","grid");
+  }
+}
+
 });
 </script>
 </head>
@@ -250,7 +263,7 @@ $("bookshelf").css("display","flex");
 <div id="details">
 </div>
 <div id="bookshelf">
-  
+
 </div>
 </body>
 </html>
