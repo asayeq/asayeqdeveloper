@@ -103,6 +103,15 @@
     display: none;
     z-index: 1;
   }
+  #bookinfo{
+		border:3px solid #bcd4e6;
+		border-radius: 2px;
+		width : 23%;
+		flex-grow : 1;
+		margin: 5 px;
+		text-align: center;
+		padding: 3px;
+		}
 
 
 
@@ -242,13 +251,14 @@ $("bookshelf").css("display","flex");
 }
 function changeView(){
   console.log('here');
-  console.log($("#viewButton").attr("viewType"));
-  if ($("#viewButton").attr("viewType")==="grid"){
+  console.log($("#view").attr("viewType"));
+
+  if ($("#view").attr("viewType")=="grid"){
     $(".bookinfo").css("width","98%");
-    $("#viewButton").attr("viewType","list");
+    $("#view").attr("viewType","list");
   }
   else{
-    $(".bookdiv").css("width","23%");
+    $(".bookinfo").css("width","23%");
     $("#viewButton").attr("viewType","grid");
   }
 }
@@ -262,7 +272,7 @@ function changeView(){
 <input type = "text" autofocus id = "searchbar">
 <button id="search">Search</button>
 <button id="shelf">Bookshelf</button>
-<button id="view" viewType="list">Change view</button>
+<button id="viewButton" viewType="list">Change view</button>
 
 
 
