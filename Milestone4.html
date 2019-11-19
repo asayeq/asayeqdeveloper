@@ -112,7 +112,9 @@
 		text-align: center;
 		padding: 3px;
 		}
+    #bookinfo { width: 100%; border-bottom: 1px dotted #CCC; margin-bottom: 10px; padding-bottom: 10px; }
 
+    #bookinfo .grid  { float: left; width: 20%; height: 50px; border-right: 1px dotted #CCC; border-bottom: 1px dotted #CCC; padding: 20px; }
 
 
 
@@ -157,7 +159,7 @@ $(document).ready(function(){
     function bookSearch(){
       var bookinfo = $("#bookinfo");
       bookinfo.html("<br>");
-      for (i = 0; i< 5; i++) {
+      for (i = 0; i< 10; i++) {
         var page = "&startIndex=" + i * 10;
         var num = i + 1;
         $("#bookinfo").append('<a href = "javascript:;" class="page" startIndex = ' + page + ' pageNum="' + num + '">' +( i + 1) + '</a> &nbsp&nbsp');
@@ -174,7 +176,7 @@ $(document).ready(function(){
     $.getJSON("https://www.googleapis.com/books/v1/volumes?q=" + searchin + start,  function(data){
           var $bookinfo = $("#bookinfo");
           var content = "";
-          content += "total items: " + data["totalItems"] + "<br>";
+          //content += "total items: " + data["totalItems"] + "<br>";
           content += Mustache.render($('#search_details_template').html(), data);
           bookinfo.append(content);
     //var data1 = data["items"];
@@ -258,7 +260,7 @@ function changeView(){
     $("#viewButton").attr("viewType","list");
   }
   else{
-    $(".bookinfo").css("width","23%");
+    $(".bookdiv").css("width","23%");
     $("#viewButton").attr("viewType","grid");
   }
 }
@@ -272,7 +274,7 @@ function changeView(){
 <input type = "text" autofocus id = "searchbar">
 <button id="search">Search</button>
 <button id="shelf">Bookshelf</button>
-<button id="viewButton" viewType="list">Change view</button>
+<button id="viewButton" viewType="grid">Change view</button>
 
 
 
