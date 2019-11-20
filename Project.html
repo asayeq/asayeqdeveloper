@@ -78,6 +78,7 @@ $(document).ready(function() {
 		var search=document.getElementById("searchValue").value;
 		search=search.replace(/\s/g,"%20");
 		var url= "https://api.openweathermap.org/data/2.5/forecast?&mode=json&q=" + search +"&units=imperial&APPID=79ce6f6a364353db9ec4e99c1eeeea09";
+    $("#rt").text("Weather forecast in " + search + " for the next five days");
 		$.getJSON(url,function(data){
 			console.log(data);
 			var $jsontip = $("#jsonTip");
@@ -177,7 +178,7 @@ $(document).ready(function() {
 <h2 style="color:blue;" id="q"> WEATHER API</h2>
 <h1> <input type="text" name="searchValue" id ="searchValue" autofocus placeholder = " Enter City Here" size = "60" class="kt"><br>
 <button type="button" id="Searchbutton" class="ka"> SEARCH WEATHER</button> </h1>
-<h2 id="rt">Weather forecast for the next five days</h2>
+<h2 id="rt"></h2>
 <div id= "Search">
 <a style="position:absolute; top:1%; right:5%"; href="index.html">Home page</a>
 </div>
