@@ -1,177 +1,187 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
 <meta charset="utf-8"/>
-
+<link rel="stylesheet" href="project.css"/>
 <style>
-
 .searchbox{
-
 text-align: center;
-
 }
+ img{padding: 20px;
+			float: left;
 
-img{padding: 20px;
+			margin-right: 15px;
+		}
+		html{
+		background:#b9dbf0;}
 
-float: left;
-
-margin-right: 15px;
-
-}
-
-html{
-
-background:#b9dbf0;}
-
-#shelfdetails
-
-{
-
-flex-wrap:wrap;
-
-position: fixed;
-
-top:50px;
-
-left: 120px;
-
-width: 80%;
-
-overflow:auto;
-
-height: 80%;
-
-background-color:#bcd4e6;;
-
-padding: 50px 10px 10px 10px;
-
-display: none;
-
-z-index: 1;
-
-}
-
-#bookdetails
-
-{
-
-position: fixed;
-
-top:50px;
-
-left: 120px;
-
-width: 80%;
-
-overflow:auto;
-
-height: 80%;
-
-background-color:#bcd4e6;
-
-padding: 50px 10px 10px 10px;
-
-display: none;
-
-z-index: 2;
-
-}
-
-#hideButton{
-
-position: absolute;
-
-top:30px;
-
-right:30px;
-
-}
-
-#hideShelf{
-
-position: absolute;
-
-top:30px;
-
-right:30px;
-
-}
-
-.bookdiv{
-
-border:3px solid #bcd4e6;
-
-border-radius: 2px;
-
-width : 23%;
-
-flex-grow : 1;
-
-margin: 5 px;
-
-text-align: center;
-
-padding: 3px;
-
-}
-
-#jsonTip{
-
-display: flex;
-
-flex-wrap: wrap;
-
-}
+		{
+		flex-wrap:wrap;
+		position: fixed;
+		top:50px;
+		left: 120px;
+		width: 80%;
+		overflow:auto;
+		height: 80%;
+		background-color:#bcd4e6;;
+		padding: 50px 10px 10px 10px;
+		display: none;
+		z-index: 1;
+		}
+		#bookdetails
+		{
+		position: fixed;
+		top:50px;
+		left: 120px;
+		width: 80%;
+		overflow:auto;
+		height: 80%;
+		background-color:#bcd4e6;
+		padding: 50px 10px 10px 10px;
+		display: none;
+		z-index: 2;
+		}
+		#hideButton{
+		position: absolute;
+		top:30px;
+		right:30px;
+		}
+		#hideShelf{
+		position: absolute;
+		top:30px;
+		right:30px;
+		}
+		.moviediv{
+		border:3px solid #bcd4e6;
+		border-radius: 2px;
+		width : 23%;
+		flex-grow : 1;
+		margin: 5 px;
+		text-align: center;
+		padding: 3px;
+		}
+		#jsonTip{
+		display: flex;
+		flex-wrap: wrap;
+		}
 
 </style>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.0/mustache.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
 </head>
-
 <script>
-
 $(document).ready(function() {
 
-$("#Searchbutton").click(function(){
 
-console.log("outside");
+	$("#Searchbutton").click(function(){
+		console.log("outside");
+		var search=document.getElementById("searchValue").value;
+		search=search.replace(/\s/g,"%20");
+		var url= "https://api.openweathermap.org/data/2.5/forecast?&mode=json&q=" + search +"&units=imperial&APPID=79ce6f6a364353db9ec4e99c1eeeea09";
+		$.getJSON(url,function(data){
+			console.log(data);
+			var $jsontip = $("#jsonTip");
 
-$.getJSON("https://api.themoviedb.org/3/search/movie?api_key=9c25c51876d55c183e62996849b9fe6d&language=en-US&page=1&query=" + +"&include_adult=false",function(data){
+			 var template = $('#searchTemplate').html();
+			 var html = Mustache.render(template, data);
+			  $jsontip.empty().html(html);
 
-console.log(data);
 
-}).fail(function( jqxhr, textStatus, error ) {
+			 var days = [
+			 [data.list[2], data.list[4], data.list[6]],
+			 [data.list[10], data.list[12], data.list[14]],
+			 [data.list[18], data.list[20], data.list[22]],
+			 [data.list[26], data.list[28], data.list[30]],
+			 [data.list[34], data.list[36], data.list[38]]
+			 ];
 
-var err = textStatus + ", " + error;
+			 for(var i = 0; i < 5; i++) {
+			 var list = "<div class=\"day\"><p class=\"period\">Day " + (i+1) + "</p>";
+				for(var j = 0; j < 3; j++) {
+					var period = days[i][j];
 
-console.log( "Request Failed: " + err );
+					var date = "<p>" + period.dt_txt + "</p>";
+					var temp = "<p>Temperature: "+Math.round(period.main.temp)+" &#8457</p>";
+					var humidity = "<p>Humidity: "+period.main.humidity+"%</p>";
+					var description = "<p>Description: "+period.weather[0].description+"</p>";
+					var icon = "<img src=\"http://openweathermap.org/img/wn/"+period.weather[0].icon+"@2x.png\"/>";
+					var wind_speed ="<p>Wind Speed: "+Math.round(period.wind.speed)+"</p>";
 
-});
+					list += "<div class=\"section\">";
+					list += date;
+					list += temp;
+					list += humidity;
+					list += description;
+					list += icon;
+					list += wind_speed;
+					list += "</div>";
 
-});
+				}
+				list += "</div>";
 
+				$jsontip.append(list);
+			 }
+
+
+			}).fail(function( jqxhr, textStatus, error ) {
+			var err = textStatus + ", " + error;
+			console.log( "Request Failed: " + err );
+		});
+	});
 });
 
 </script>
 
-<body>
+ <script id='searchTemplate' type='text/template'>
+  {{#results}}
 
-<h2 style="color:blue;"> MOVIE DATABASE</h2>
+  <div class='moviediv' id= {{id}} >
+   <a href="javascript:;" class = 'movietitle' id='movietitle' movieid = {{id}} type={{media_type}}>{{title}}
 
-<input type="text" name="searchValue" id ="searchValue" autofocus placeholder = " Search" size = "60"><br>
+   </a><br>
+   <img src= https://image.tmdb.org/t/p/w154/{{poster_path}} alt="thumbnail picture of the movie."><br>
 
-<button type="button" id="Searchbutton"> Search</button>
+  </div>
 
-<div id= "Search">
+  {{/results}}
+ </script>
 
-<a style="position:absolute; top:1%; right:5%"; href="index.html">Home page</a>
+  <script id='tvResultsTemplate' type='text/template'>
+  {{#results}}
 
+  <div class='moviediv' id= {{id}} >
+   <a href="javascript:;" class = 'movietitle' id='movietitle' movieid = {{id}} type={{media_type}}>{{name}}
+
+   </a><br>
+   <img src= https://image.tmdb.org/t/p/w154/{{poster_path}} alt="thumbnail picture of the movie."><br>
+
+  </div>
+
+  {{/results}}
+ </script>
+
+ <script id="moviedetails_template" type="text/html">
+
+<div>
+<img src= https://image.tmdb.org/t/p/w154/{{poster_path}} alt="thumbnail picture of the movie."><br>
+<h1>{{title}}</h1>
+
+
+<p>{{overview}}</p>
+<p>{{release_date}}</p>
 </div>
-
+</script>
+ <script id="tvdetails_template" type="text/html">
+ </script>
+<body>
+<h2 style="color:blue;" id="q"> WEATHER API</h2>
+<h1> <input type="text" name="searchValue" id ="searchValue" autofocus placeholder = " Enter City Here" size = "60" class="kt"><br>
+<button type="button" id="Searchbutton" class="ka"> SEARCH WEATHER</button> </h1>
+<h2 id="rt">Weather forecast for the next five days</h2>
+<div id= "Search">
+<a style="position:absolute; top:1%; right:5%"; href="index.html">Home page</a>
+</div>
+ <div id="jsonTip">
+  </div>
 </body>
-
 </html>
