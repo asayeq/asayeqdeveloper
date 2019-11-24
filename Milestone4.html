@@ -18,80 +18,60 @@
 <style type="text/css">
 #bs{
   text-align: center;
-  position: absolute;
-  top: 50px;
-  left: 130px;
-  transform: translate(10%, 5%);
   }
-  .bs .input{
+.bs .input{
     height: 20px;
     width: 30px;
   }
-  #bg{
-      position: absolute;
-
-      top: 200px;
-      left:20px;
-      transform: translate(10%, 5%);
+#bg{
       background: #FFFFCC;
-
-
-    left: 30%;
-    line-height: 20px;
-    margin-top: -100px;
-
-    position: absolute;
-    top: 19%;
-    width: 100%;
-
-
   }
-  #bg .input{
-    height: 40px;
-    width: 800px;
-  }
-  body{
+body{
     background-color: #F0F8FF;
   }
-  #bk{
-
-    left: 0;
-    line-height: 20px;
-    margin-top: -100px;
-    position: absolute;
+#bk{
     text-align: center;
-    top: 15%;
-    width: 100%;
+position: absolute;
+left: 550px;
+top: 1px;
+  }
+#resultPage{
+    text-align: center;
+  }
+#searchbar{
+  position: absolute;
+  left: 550px;
+  top: 60px;
+}
+#search{
+  position: absolute;
+  left: 685px;
+  top: 60px;
+}
+#shelf{
+  position: absolute;
+  left: 738px;
+  top: 60px;
+}
+#hideshelf{
+  width: 55px;
+}
 
+#viewButton{
+  position: absolute;
+  left: 808px;
+  top: 60px;
+}
+#hideButton{
+  position: absolute;
+  left: 550px;
+  top: 15px;
+}
+.booksList{
+    display: flex;
+    flex-wrap: wrap;
   }
-  #ks{
-    position: absolute;
-    top:25px;
-    left: 1010px;
-  }
-  #kl{
-    position: absolute;
-    top: 45px;
-    left: 1010px;
-  }
-  #kp{
-    position: absolute;
-    top: 65px;
-    left: 1012px;
-  }
-  #details{
-    position: fixed;
-    top: 50px;
-    left: 120px;
-    overflow: auto;
-    width: 80%;
-    height: 80%;
-    background-color: grey;
-    padding: 10px;
-    display: none;
-    z-index: 2;
-  }
-  #bookshelf{
+#bookshelf{
     position: fixed;
     top: 50px;
     left: 120px;
@@ -101,29 +81,56 @@
     background-color: grey;
     padding: 50px 10px 10px 10px;
     display: none;
+    flex-wrap: wrap;
+    flex-direction: row;
     z-index: 1;
   }
-  #bookinfo{
-		border:3px solid #bcd4e6;
-		border-radius: 2px;
-		width : 23%;
-		flex-grow : 1;
-		margin: 5 px;
-		text-align: center;
-		padding: 3px;
-		}
-    #bookinfo { width: 100%; border-bottom: 1px dotted #CCC; margin-bottom: 10px; padding-bottom: 10px; }
+  #details{
+      position: fixed;
+      top: 50px;
+      left: 120px;
+      overflow: auto;
+      width: 80%;
+      height: 80%;
+      background-color: grey;
+      padding: 50px 10px 10px 10px;
+      display: none;
+      flex-wrap: wrap;
+      z-index: 2;
+    border:  1px solid black;
+    margin: auto;
+    border: center;
+    border-radius: 25px;
+    }
+.bookdiv {
+  border: 3px solid black;
+  border-radius: 2px;
+  width: 23%;
+  flex-grow: 1;
+  margin: 5px;
+  text-align: center;
+  padding: 3px;
+}
 
-    #bookinfo .grid  { float: left; width: 20%; height: 50px; border-right: 1px dotted #CCC; border-bottom: 1px dotted #CCC; padding: 20px; }
+.book-list-view .booksList {
+    flex-wrap: wrap;
+    flex-direction: column;
+}
 
+.book-list-view #bookshelf {
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
 
-
+.book-list-view #bookshelf .bookdiv {
+    width: 97%;
+}
 </style>
 
 <script id='search_details_template' type='text/template'>
 {{#items}}
 {{#volumeInfo}}
-<div id={{id}} class='book_div'>
+<div id={{id}} class='bookdiv'>
   <img src= {{imageLinks.thumbnail}} alt="alternate text"><br>
   Title: <a href = "javascript:;" class = 'booklink' bookid= {{id}} b='b'> {{title}} </a>
 </div><br>
@@ -140,10 +147,10 @@
 {{authors}}<br></h4>
 <h5>Publisher: {{publisher}}</h5>
 <h5>PublishedDate: {{publishedDate}}</h5>
-<h5>pageCount: {{pageCount}}</h5>
-<h5>printType: {{printType}}</h5>
-<h5>pageCount: {{pageCount}}</h5>
-<h5>saleInfo: {{saleInfo.country}}</h5>
+
+<h5>PrintType: {{printType}}</h5>
+<h5>PageCount: {{pageCount}}</h5>
+<h5>SaleInfo: {{saleInfo.country}}</h5>
 <h4>Book Description: {{description}}</h4>
 
 {{/volumeInfo}}
@@ -155,16 +162,14 @@ $(document).ready(function(){
   var start = "&startIndex=0";
   $("#search").on("click", bookSearch);
   $("#shelf").on("click", bookshelf);
-  $("#viewButton").on("click", ChangeView);
+  $("#viewButton").on("click", changeView);
 
     function bookSearch(){
-      var bookinfo = $("#bookinfo");
-      bookinfo.html("<br>");
-      for (i = 0; i< 10; i++) {
-        var page = "&startIndex=" + i * 10;
-        var num = i + 1;
-        $("#bookinfo").append('<a href = "javascript:;" class="page" startIndex = ' + page + ' pageNum="' + num + '">' +( i + 1) + '</a> &nbsp&nbsp');
-      }
+      var $bookinfo = $(".booksList");
+      var bookInfoHtml = "";
+
+
+      $(".booksNav").html(bookInfoHtml);
       $(".page").click(function(){
         start = $(this).attr("startIndex");
         bookSearch();
@@ -175,31 +180,11 @@ $(document).ready(function(){
 
     console.log("https://www.googleapis.com/books/v1/volumes?q=" + searchin+start);
     $.getJSON("https://www.googleapis.com/books/v1/volumes?q=" + searchin + start,  function(data){
-          var $bookinfo = $("#bookinfo");
           var content = "";
-          //content += "total items: " + data["totalItems"] + "<br>";
+
           content += Mustache.render($('#search_details_template').html(), data);
-          bookinfo.append(content);
-    //var data1 = data["items"];
+          $bookinfo.append(content);
 
-    //content += Mustache.render(book_details_template, data);
-    //append content to bookinfo
-
-    //$.each(data1,function(infoIndex,info){
-
-      //  var content = "";
-
-
-      //var volumeInfo = info["volumeInfo"];
-      //var images = volumeInfo["imageLinks"];
-      //content = Mustache.render(book_details_template, info);
-      //bookinfo.append(content);
-      //content += "<div id='b"+ infoIndex+"'> <img src='" + images["thumbnail"] + "'><br>";
-      //content += "Title: <a href = javascript:; class = 'booklink' bookid='" + info["id"] + "' b='b"+infoIndex+"'>" + volumeInfo["title"] + "</a></div><br>";
-      //content += ""
-
-
-//});
 $(".booklink").click(function() {
   var bookid = $(this).attr("bookid");
   var b = $(this).attr("b");
@@ -245,9 +230,9 @@ function bookshelf(){
         var bookid = $(this).attr("bookid");
         getBooklink(bookid);
       });
+    $("#bookshelf").fadeIn();
+    $("#bookshelf").css("display","flex");
 });
-$("#bookshelf").fadeIn();
-$("bookshelf").css("display","flex");
 
 
 
@@ -256,42 +241,36 @@ function changeView(){
   console.log('here');
   console.log($("#viewButton").attr("viewType"));
 
-  if ($("#viewButton").attr("viewType")==="grid"){
-    $(".bookinfo").css("width","98%");
-    $("#viewButton").attr("viewType","list");
-  }
-  else{
-    $(".bookdiv").css("width","23%");
-    $("#viewButton").attr("viewType","grid");
-  }
+  document.body.classList.toggle("book-list-view")
+
 }
 
 });
 </script>
 </head>
 <body>
-<br />
 <div id="bg">
+
+
+  <p><h1><a href="index.html">Back to Index page</a></h1><br/></p>
+
+<p id="bk"><font size="6"><b>Improved SPA UI</font></b></br></p>
+<p style="position:absolute;top:15px;right:15px"> Student Name: Aimal Sayeq<br >Course: Advanced Web Development<br >Lab#: Milestone 4</p>
 <input type = "text" autofocus id = "searchbar">
 <button id="search">Search</button>
 <button id="shelf">Bookshelf</button>
 <button id="viewButton" viewType="grid">Change view</button>
-
-
-
-<div id="divframe">
-  <div id="bookinfo">
-
-  </div>
-
 </div>
-</div>
-  <p><h1><a href="index.html">Back to Index page</a></h1><br/></p>
+<div id="resultPage"></div>
+<article class="books">
+  <section class="booksList">
+    <!-- Books go here -->
+  </section>
+  <nav class="booksNav">
+    <!-- Nav links go here -->
+  </nav>
 
-<p id="bk"><font size="6"><b>Improved SPA UI</font></b></br></p>
-<p id="ks"> Student Name: Aimal Sayeq</p>
-<p id="kl"> Course: Advanced Webdevelopment</p>
-<p id="kp"> Lab#: Milestone 4</p>
+</article>
 <div id="details">
 </div>
 <div id="bookshelf">
