@@ -167,6 +167,11 @@ $(document).ready(function(){
     function bookSearch(){
       var $bookinfo = $(".booksList");
       var bookInfoHtml = "";
+      for (i = 0; i< 5; i++) {
+        var page = "&startIndex=" + i * 10;
+        var num = i + 1;
+        bookInfoHtml += '<a href = "javascript:;" class="page" startIndex = ' + page + ' pageNum="' + num + '">' +( i + 1) + '</a>';
+      }
 
 
       $(".booksNav").html(bookInfoHtml);
